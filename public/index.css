@@ -1,0 +1,90 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+#cats-container {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  height: 300px;
+}
+
+#cats-container img {
+  width: 100%;
+}
+
+#request-img-btn {
+  background-color: rgb(228, 157, 145);
+  border-radius: 5px;
+  padding: 20px 40px;
+  border: none;
+}
+
+#vote-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+#upvote,
+#downvote {
+  background-color: wheat;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: none;
+}
+
+#request-img-btn:hover,
+#upvote:hover,
+#downvote:hover,
+#comment-btn:hover {
+  background-color: teal;
+  color: white;
+}
+
+#score,
+#score-up,
+#score-down {
+  color: teal
+}
+
+#comment-btn {
+  background-color: rgb(228, 157, 145);
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: none;
+}
+
+#comments {
+  border: 1px solid black;
+  width: 85%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  gap: 40px;
+  padding: 20px;
+}
+
+.comment {
+  background-color: rgb(143, 207, 150);
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+  width: 98%;
+  text-align: center;
+}
+
+.comment:hover {
+  background-color: teal;
+  color: white;
+}
