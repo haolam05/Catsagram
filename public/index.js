@@ -5,7 +5,7 @@ async function initializeCatsogram() {
   addHeader('Kitten Pic');
   addCatsContainer();
   addRequestImgBtn('request-img-btn');
-  await addRandomKitten();
+  localStorage.getItem('img') ? restoreImage() : await addRandomKitten();
   addScore();
   addVoteBtns();
   addCommentInput();
@@ -37,17 +37,22 @@ export default async function addRandomKitten() {
   const response = await fetch('https://api.thecatapi.com/v1/images/search');
   const data = await response.json();
   catsContainer.innerHTML = `<img alt='${data[0].id}' src='${data[0].url}'></img>`;
+  localStorage.setItem('img', catsContainer.innerHTML);
 }
 
 function addScore() {
   const p = document.createElement('p');
   p.setAttribute('id', 'score-container');
-  p.innerHTML = `
+  if (localStorage.getItem('score')) {
+    p.innerHTML = localStorage.getItem('score');
+  } else {
+    p.innerHTML = `
     Popularity Score: <span id='score'>0</span>
     <br>
     <span id='score-up'>0</span> <span>👍</span>
     <span id='score-down'>0</span> <span>👎</span>
   `;
+  }
   document.body.appendChild(p);
 }
 
@@ -78,7 +83,12 @@ function addCommentInput() {
 function addComments() {
   const ul = document.createElement('ul');
   ul.setAttribute('id', 'comments');
+  if (localStorage.getItem('comments')) ul.innerHTML = localStorage.getItem('comments');
   document.body.appendChild(ul);
+}
+
+function restoreImage() {
+  document.querySelector('#cats-container').innerHTML = localStorage.getItem('img');
 }
 
 window.onload = initializeCatsogram;

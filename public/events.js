@@ -15,6 +15,7 @@ export default function initializeEvents() {
     if (this.vote == 'upvote') scoreUpEl.innerText = Number(scoreUpEl.innerText) + 1;
     if (this.vote == 'downvote') scoreDownEl.innerText = Number(scoreDownEl.innerText) + 1;
     score.innerText = Number(scoreUpEl.innerText) - Number(scoreDownEl.innerText);
+    localStorage.setItem('score', document.querySelector('#score-container').innerHTML);
   }
 
   function addComment() {
@@ -24,11 +25,14 @@ export default function initializeEvents() {
     li.classList.add('comment');
     ul.appendChild(li);
     document.querySelector('#comment-text').value = '';
+    localStorage.setItem('comments', ul.innerHTML);
   }
 
   document.querySelector('#request-img-btn').addEventListener('click', async () => {
     await addRandomKitten();
     reset();
+    localStorage.removeItem('comments');
+    localStorage.removeItem('score');
   });
   document.querySelector('#upvote').addEventListener('click', calculateScore.bind({ vote: 'upvote' }));
   document.querySelector('#downvote').addEventListener('click', calculateScore.bind({ vote: 'downvote' }));
